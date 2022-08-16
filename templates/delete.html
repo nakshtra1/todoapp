@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}delete{% endblock title %}
+
+{% block body %}
+<div class="jumbotron">
+    <div class="container">
+        <h1 class="display-6">Delete task '{{title}}'</h1>
+        <hr class="my-4">
+        <form action="/delete/{{id}}" method="post">
+            {% csrf_token %}
+            <button class="btn btn-danger mt-3" type="submit" role="button">Delete</button>
+            <a class="btn btn-primary mt-3" href="/edit/{{id}}" role="button">Edit Instead</a>
+        </form>
+    </div>
+</div>
+{% endblock body %}

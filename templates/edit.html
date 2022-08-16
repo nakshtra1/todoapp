@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}edit{% endblock title %}Home
+
+{% block body %}
+<div class="jumbotron">
+    <div class="container">
+        <h1 class="display-6">Update task '{{title}}'</h1>
+        <hr class="my-4">
+
+        {% comment %} form {% endcomment %}
+
+        <form action="/edit/{{id}}" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="title">Enter title</label>
+                <input type="title" class="form-control" value={{title}} id="title" name="title" placeholder="Title">
+            </div>
+            <div class="form-group">
+                <label for="description">Describe your task</label>
+                <textarea class="form-control" id="description" name="description" rows="3"
+                    placeholder="Describe your task">{{description}}</textarea>
+            </div>
+            <div class="form-check">
+                {% if is_done == True %}
+                <input class="form-check-input" type="checkbox" name="isDone" id="isDone" checked>
+                {% else %}
+                <input class="form-check-input" type="checkbox" name="isDone" id="isDone">
+                {% endif %}
+                <label class="form-check-label" for="isDone">Check this if task is completed</label>
+            </div>
+            <button class="btn btn-primary mt-3" type="submit" role="button">Update</button>
+        </form>
+    </div>
+</div>
+{% endblock body %}
